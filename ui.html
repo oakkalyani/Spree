@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>spree</title>
         <h1 style="text-align:center"> Spree POC </h1>
+        <button onclick="getCurTime()" type="button">Get current time position</button>
         <hr>
             
 
@@ -14,24 +15,35 @@
               <source src="knives_out.mp4" type="video/mp4">
             </video>
             <div id="changeVideo">
-                <a href="https://www.anthropologie.com/shop/baby-bunny-stuffed-animal?color=006&size=One%20Size&inventoryCountry=US&countryCode=US&gclid=Cj0KCQiA6Or_BRC_ARIsAPzuer-zqmxKkwHbnDHtaW7uveaZW7hyeQOM-fAk1JXaPYBN4eP2b-ewkrsaAnzbEALw_wcB&gclsrc=aw.ds&type=STANDARD&quantity=1">!</a>
+                <a id = "link_to_ext" href="https://www.anthropologie.com/shop/baby-bunny-stuffed-animal?color=006&size=One%20Size&inventoryCountry=US&countryCode=US&gclid=Cj0KCQiA6Or_BRC_ARIsAPzuer-zqmxKkwHbnDHtaW7uveaZW7hyeQOM-fAk1JXaPYBN4eP2b-ewkrsaAnzbEALw_wcB&gclsrc=aw.ds&type=STANDARD&quantity=1">!</a>
               </div>
             <div id="shoppingButton">
              <button onclick="shopping()">Spree</button>
             </div>
             <script>
+              var vid = document.getElementById("video");
+              var shopping_links = ["https://www.amazon.in/deal/e39f8d49/ref=gbph_img_m-3_053b_e39f8d49?smid=AT95IG9ONZD7S&pf_rd_p=c272e30d-495e-493f-9388-4d6afb12053b&pf_rd_s=merchandised-search-3&pf_rd_t=101&pf_rd_i=6648217031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_r=2BT66EK3MV57VR53389N",
+               "https://www.amazon.in/ASICS-Coralicious-Running-Shoes-8-T7E3N-4996/dp/B078MC6B26?ref_=Oct_DLandingS_D_e39f8d49_62&smid=AT95IG9ONZD7S", 
+               "https://www.amazon.in/FashCloud-Cotton-Sleeve-Anthra-Maroon/dp/B07NK5PLKQ/ref=sr_1_3?dchild=1&pf_rd_i=1968024031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=f009c81f-a9c8-46be-8ed8-e3d29720f222&pf_rd_r=QVDTCVTWAM099NN3JN6T&pf_rd_s=merchandised-search-9&qid=1610730102&refinements=p_36%3A-59900&rnid=4595083031&s=apparel&sr=1-3"];
+
               function shopping(){
-                // var x = document.getElementById("changeVideo");
+                link = ""
+                if(vid.currentTime < 40) link = shopping_links[0];
+                else if(vid.currentTime > 40 && vid.currentTime < 100) link = shopping_links[1]
+                else if(vid.currentTime > 100) link = shopping_links[2]
+                document.getElementById("link_to_ext").href = link;
+                var x = document.getElementById("changeVideo");
+                $('#video').trigger('pause');
                 alert('Click!');
-                // x.style.display = "block"
+                x.style.display = "block";
               }
 
-                  // alert("The video has paused");
-                };
-                // vid.onplay = function(){
-                //   var x = document.getElementById("changeVideo");
-                //   x.style.display = 'none'
-                // }
+                //   alert("The video has paused");
+                // };
+                vid.onplay = function(){
+                  var x = document.getElementById("changeVideo");
+                  x.style.display = 'none';
+                }
                 </script>
           </div>          
     </head>
