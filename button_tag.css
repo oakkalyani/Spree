@@ -1,0 +1,49 @@
+#container {
+    position: relative;
+  }
+  
+  video {
+    width: 1000px;
+  }
+  
+  #changeVideo {
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    width: 25px;
+    height: 25px;
+    opacity: 0;
+    transition: opacity .3s ease;
+    cursor: pointer;
+    display: none;
+    
+    /* Additional styles just to increase visual appeal */
+    border-radius: 50%;
+    background: #FFFFFFDD;
+    color: red;
+    font-weight: bold;
+    line-height: 25px;
+    text-align: center;
+    /* End */
+  }  
+  /* On hovering the video, show the button */
+  video:hover~#changeVideo {
+    opacity: 1;
+  }
+  
+  #changeVideo:hover {
+    opacity: 1;
+  }
+  #changeVideo:active {
+    color: rgb(0, 60, 255);
+  } 
+ 
+  #shoppingButton {
+    position: absolute;
+    top: 10px;
+    left: 940px;
+    width: 25px;
+    height: 25px;
+    color: black;
+    font-weight: 1000;
+  }
