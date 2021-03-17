@@ -14,14 +14,16 @@
             <video id="video" controls autoplay loop>
               <source src="knives_out.mp4" type="video/mp4">
             </video>
+
             <div id="changeVideo">
-                <a target="_blank" id = "link_to_ext" href="https://www.anthropologie.com/shop/baby-bunny-stuffed-animal?color=006&size=One%20Size&inventoryCountry=US&countryCode=US&gclid=Cj0KCQiA6Or_BRC_ARIsAPzuer-zqmxKkwHbnDHtaW7uveaZW7hyeQOM-fAk1JXaPYBN4eP2b-ewkrsaAnzbEALw_wcB&gclsrc=aw.ds&type=STANDARD&quantity=1">!</a>
+                <button onclick="productLink()" id = "link_to_ext"> </button>
               </div>
             <div id="shoppingButton">
              <button onclick="turnOn()" id = "spreeButton">Spree</button>
             </div>
             <script>
               var state = false
+              var cur_link = ""
 
               function turnOn() {
                 if (state === false)  {
@@ -36,49 +38,64 @@
 
               var vid = document.getElementById("video");
 
-              var red_coat_link = "https://urldefense.com/v3/__https://www.bloomingdales.com/shop/product/t-tahari-ella-belted-coat?ID=3769675&CategoryID=2910__;!!DZ3fjg!vpBxvWQ1HfK1j4dYB73Z0tq-3gIOgOfllfLsFZUWjioMfV1L6TP56ZXRys6j63BH1pw$"
-              var suit = "https://www.marksandspencer.in/navy-regular-fit-jacket/p/000000022420968006.html?gclsrc=aw.ds&utm_source=google&utm_medium=cpc&utm_campaign=10495201155&adgroupid=102147438205&utm_content=shopping&gclid=Cj0KCQiAmL-ABhDFARIsAKywVaeflLG5ayux_t0qEKJ8bipVRsbNSW432tHyT7038TVmIoUxhi04bGMaAp48EALw_wcB"
-              var brown_sweater = "https://www.tatacliq.com/ascot-by-westside-brown-crewneck-relaxed-fit-sweater/p-mp000000007987146?cid=ps:A_Sok_Smart_Shopping_Apparels_Westside_RPC_2020_New:Google:PLA:Westside-Unisex&gclid=Cj0KCQiAmL-ABhDFARIsAKywVafnRgtfP3sExuKfWvvK3hlEsk-85bGynp2Zq3DvmNeR4SeWJHTggRYaAucGEALw_wcB"
+              var red_coat_link = "https://www.amazon.com/dp/B079V3BX9N/ref=cm_gf_aahm_iaaa_d_p0_qd0_SoY408CIqSRoaddRUNic"
+              var suit = "https://www.amazon.com/Utopia-Bedding-Premium-Filled-Pillows/dp/B071DFDF9N/?_encoding=UTF8&pd_rd_w=WNrI0&pf_rd_p=c638e3d4-046b-4753-9e53-3752c2d7f6a7&pf_rd_r=WHAAHXY4AV0B93XE4Z8X&pd_rd_r=cb140d1f-a71d-47ab-afca-b793dd1b0541&pd_rd_wg=BqKsH&ref_=pd_gw_hl_comp_mis_psims"
+              var brown_sweater = "https://www.amazon.com/Casio-Womens-Classic-Leather-Synthetic-11WL-7ACF/dp/B01N2A2Y27/?_encoding=UTF8&pd_rd_w=RemJV&pf_rd_p=941cb758-a13e-46e5-873f-8fa9888b80e9&pf_rd_r=WHAAHXY4AV0B93XE4Z8X&pd_rd_r=cb140d1f-a71d-47ab-afca-b793dd1b0541&pd_rd_wg=BqKsH&ref_=pd_gw_srecs_l2ra"
 
               links_dict = {
-                "red_coat_link": { "coord": [320, 480], "link": red_coat_link, "time": 0},
-                "suit": { "coord": [320, 400], "link": suit, "time": 0},
-                "brown_sweater": { "coord": [320, 480],  "link": brown_sweater, "time": 0} 
+                "red_coat_link": { "coord": [20, 400], "link": red_coat_link, "time": 0, "size": [400, 300]},
+                "suit": { "coord": [20, 400], "link": suit, "time": 0, "size": [400, 300]},
+                "brown_sweater": { "coord": [20, 480],  "link": brown_sweater, "time": 0, "size": [400, 300]} 
               };
 
-              // function shopping()
-              vid.onpause = function(){
-                link = ""
-                console.log(vid.currentTime);
-                if(vid.currentTime > 9 && vid.currentTime < 11)  {
-                  document.getElementById("changeVideo").style.top = links_dict['red_coat_link']['coord'][0];
-                  document.getElementById("changeVideo").style.left = links_dict['red_coat_link']['coord'][1];
-                  link = links_dict['red_coat_link']['link'];
-                }
-                if(vid.currentTime > 36 && vid.currentTime < 38) {
-                  document.getElementById("changeVideo").style.top = links_dict['suit']['coord'][0];
-                  document.getElementById("changeVideo").style.left = links_dict['suit']['coord'][1];
-                  link = links_dict['suit']['link'];
-                }
-                if(vid.currentTime > 50 && vid.currentTime < 52) {
-                  document.getElementById("changeVideo").style.top = links_dict['brown_sweater']['coord'][0];
-                  document.getElementById("changeVideo").style.left = links_dict['brown_sweater']['coord'][1];
-                  link = links_dict['brown_sweater']['link'];
-                }
-
-                document.getElementById("link_to_ext").href = link;
+              vid.onmousemove = function(){
                 var x = document.getElementById("changeVideo");
+                
+                if(vid.currentTime > 9 && vid.currentTime < 15)  {
+                  x.style.top = links_dict['red_coat_link']['coord'][0];
+                  x.style.left = links_dict['red_coat_link']['coord'][1];
 
-                if(link != "" && state == true) {
-                //   $('#video').trigger('pause');
-                  alert('Click!');
-                  x.style.display = "block";
+                  x.style.height = links_dict['red_coat_link']['size'][0];
+                  x.style.width = links_dict['red_coat_link']['size'][1];
+
+                  cur_link = links_dict['red_coat_link']['link'];
+                  
+                  if (state == true) x.style.display = "block";
+                  else x.style.display = "none";
+                }
+                else if(vid.currentTime > 36 && vid.currentTime < 38) {
+                  x.style.top = links_dict['suit']['coord'][0];
+                  x.style.left = links_dict['suit']['coord'][1];
+
+                  x.style.height = links_dict['suit']['size'][0];
+                  x.style.width = links_dict['suit']['size'][1];
+
+                  cur_link = links_dict['suit']['link'];
+
+                  if (state == true) x.style.display = "block";
+                  else x.style.display = "none";
+                }
+                else if(vid.currentTime > 51 && vid.currentTime < 53) {
+                  x.style.top = links_dict['brown_sweater']['coord'][0];
+                  x.style.left = links_dict['brown_sweater']['coord'][1];
+
+                  x.style.height = links_dict['brown_sweater']['size'][0];
+                  x.style.width = links_dict['brown_sweater']['size'][1];
+
+                  cur_link = links_dict['brown_sweater']['link'];
+
+                  if (state == true) x.style.display = "block";
+                  else x.style.display = "none";
+                }
+                else {
+                  x.style.display = "none";
                 }
               }
 
-              vid.onplay = function(){
-                var x = document.getElementById("changeVideo");
-                x.style.display = 'none';
+              function productLink() {
+                $('#video').trigger('pause');
+                var win = window.open(cur_link, '_blank');
+                win.focus();
               }
                 </script>
           </div>          
