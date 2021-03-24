@@ -24,6 +24,11 @@
             <script>
               var state = false
               var cur_link = ""
+              var cur_item = ""
+
+              function getCurTime() {
+                console.log(vid.currentTime)
+              }
 
               function turnOn() {
                 if (state === false)  {
@@ -38,20 +43,20 @@
 
               var vid = document.getElementById("video");
 
-              var red_coat_link = "https://www.amazon.com/dp/B079V3BX9N/ref=cm_gf_aahm_iaaa_d_p0_qd0_SoY408CIqSRoaddRUNic"
-              var suit = "https://www.amazon.com/Utopia-Bedding-Premium-Filled-Pillows/dp/B071DFDF9N/?_encoding=UTF8&pd_rd_w=WNrI0&pf_rd_p=c638e3d4-046b-4753-9e53-3752c2d7f6a7&pf_rd_r=WHAAHXY4AV0B93XE4Z8X&pd_rd_r=cb140d1f-a71d-47ab-afca-b793dd1b0541&pd_rd_wg=BqKsH&ref_=pd_gw_hl_comp_mis_psims"
-              var brown_sweater = "https://www.amazon.com/Casio-Womens-Classic-Leather-Synthetic-11WL-7ACF/dp/B01N2A2Y27/?_encoding=UTF8&pd_rd_w=RemJV&pf_rd_p=941cb758-a13e-46e5-873f-8fa9888b80e9&pf_rd_r=WHAAHXY4AV0B93XE4Z8X&pd_rd_r=cb140d1f-a71d-47ab-afca-b793dd1b0541&pd_rd_wg=BqKsH&ref_=pd_gw_srecs_l2ra"
+              var red_coat_link = "https://www.amazon.com/MYS-Blazer-Button-Business-Wedding/dp/B07T96C7DY/ref=sr_1_3?dchild=1&keywords=red+suit&qid=1616551894&sr=8-3"
+              var suit = "https://www.amazon.com/Stacy-Adams-Vested-Piece-Regular/dp/B00K17NNTC/ref=sr_1_4?dchild=1&keywords=black+suit&qid=1616551956&sr=8-4"
+              var brown_sweater = "https://www.amazon.com/Pendleton-Shetland-Sweater-Brown-Harding/dp/B083B2YHK5/ref=sr_1_6?dchild=1&keywords=brown+sweater&qid=1616552002&sr=8-6"
 
               links_dict = {
-                "red_coat_link": { "coord": [20, 400], "link": red_coat_link, "time": 0, "size": [400, 300]},
-                "suit": { "coord": [20, 400], "link": suit, "time": 0, "size": [400, 300]},
-                "brown_sweater": { "coord": [20, 480],  "link": brown_sweater, "time": 0, "size": [400, 300]} 
+                "red_coat_link": { "coord": [20, 400], "link": red_coat_link, "time": 0, "size": [400, 300], "clicked": 0},
+                "suit": { "coord": [20, 400], "link": suit, "time": 0, "size": [400, 300], "clicked": 0},
+                "brown_sweater": { "coord": [20, 480],  "link": brown_sweater, "time": 0, "size": [400, 300], "clicked": 0} 
               };
 
               vid.onmousemove = function(){
                 var x = document.getElementById("changeVideo");
                 
-                if(vid.currentTime > 9 && vid.currentTime < 15)  {
+                if(vid.currentTime >= 10 && vid.currentTime <= 11 ) {
                   x.style.top = links_dict['red_coat_link']['coord'][0];
                   x.style.left = links_dict['red_coat_link']['coord'][1];
 
@@ -59,11 +64,12 @@
                   x.style.width = links_dict['red_coat_link']['size'][1];
 
                   cur_link = links_dict['red_coat_link']['link'];
+                  cur_item = 'red_coat_link'
                   
                   if (state == true) x.style.display = "block";
                   else x.style.display = "none";
                 }
-                else if(vid.currentTime > 36 && vid.currentTime < 38) {
+                else if(vid.currentTime == 37.220558) {
                   x.style.top = links_dict['suit']['coord'][0];
                   x.style.left = links_dict['suit']['coord'][1];
 
@@ -71,11 +77,12 @@
                   x.style.width = links_dict['suit']['size'][1];
 
                   cur_link = links_dict['suit']['link'];
+                  cur_item = 'suit'
 
                   if (state == true) x.style.display = "block";
                   else x.style.display = "none";
                 }
-                else if(vid.currentTime > 51 && vid.currentTime < 53) {
+                else if(vid.currentTime == 52.062109) {
                   x.style.top = links_dict['brown_sweater']['coord'][0];
                   x.style.left = links_dict['brown_sweater']['coord'][1];
 
@@ -83,8 +90,9 @@
                   x.style.width = links_dict['brown_sweater']['size'][1];
 
                   cur_link = links_dict['brown_sweater']['link'];
+                  cur_item = 'brown_sweater'
 
-                  if (state == true) x.style.display = "block";
+                  if (state == true && links_dict[cur_item]['clicked'] == 0) x.style.display = "block";
                   else x.style.display = "none";
                 }
                 else {
@@ -93,6 +101,7 @@
               }
 
               function productLink() {
+                links_dict[cur_item]['clicked'] = 1
                 $('#video').trigger('pause');
                 var win = window.open(cur_link, '_blank');
                 win.focus();
